@@ -34,7 +34,7 @@ def load_user(id):
 
 # Import routes here
 from app.models import User
-from app import routes
+from app.routes import auth_routes, dashboard
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -44,6 +44,6 @@ def create_tables():
     with app.app_context():
         db.create_all()
     
-from app.models import User, Title
+from app.models import User, Title, Story, Manga
 
-# create_tables() #Run if new tables are created.
+create_tables() #Run if new tables are created.

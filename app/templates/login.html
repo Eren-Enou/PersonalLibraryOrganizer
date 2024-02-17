@@ -11,5 +11,11 @@
         {{ form.password.label }}<br>
         {{ form.password(size=32) }}
     </p>
+
+    <div class="form-group">
+        <label for="remember_me">Remember Me</label>
+        {{ form.remember_me }}
+    </div>
+    
     <p>{{ form.submit() }}</p>
 </form>

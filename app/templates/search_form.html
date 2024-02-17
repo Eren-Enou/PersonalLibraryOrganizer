@@ -1,0 +1,117 @@
+<!-- File: app/templates/search_form.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manga Search</title>
+    <!-- Include Bootstrap CSS for styling -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2>Search for Manga</h2>
+        <form method="POST" action="{{ url_for('manga_search') }}">
+            {{ form.hidden_tag() }}
+            
+            <div class="form-group">
+                {{ form.title_query.label(class="form-control-label") }}
+                {{ form.title_query(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.tag_choices.label(class="form-control-label") }}
+                {{ form.tag_choices(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.included_tag_names.label(class="form-control-label") }}
+                {{ form.included_tag_names(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.excluded_tag_names.label(class="form-control-label") }}
+                {{ form.excluded_tag_names(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.sort_by.label(class="form-control-label") }}
+                {{ form.sort_by(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.publication_demographic.label(class="form-control-label") }}
+                {{ form.publication_demographic(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.status.label(class="form-control-label") }}
+                {{ form.status(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.content_rating.label(class="form-control-label") }}
+                {{ form.content_rating(class="form-control") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.limit.label(class="form-control-label") }}
+                {{ form.limit(class="form-control") }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+
+    <!-- Add jQuery for simplicity -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+    $(document).ready(function() {
+        let includedTags = [];
+        let excludedTags = [];
+
+        function updateTagFields() {
+            $('#included_tag_names').val(includedTags.join(','));
+            $('#excluded_tag_names').val(excludedTags.join(','));
+        }
+
+        $('#tag_choices').change(function() {
+            const selectedTags = $(this).val() || [];
+            selectedTags.forEach(tag => {
+                if (!includedTags.includes(tag) && !excludedTags.includes(tag)) {
+                    includedTags.push(tag);
+                } else if (includedTags.includes(tag)) {
+                    includedTags = includedTags.filter(t => t !== tag);
+                    excludedTags.push(tag);
+                } else if (excludedTags.includes(tag)) {
+                    excludedTags = excludedTags.filter(t => t !== tag);
+                }
+            });
+            updateTagFields();
+        });
+
+        updateTagFields(); // Initial update in case of pre-populated values
+    });
+    </script>
+
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.tag_choices.label }}
+            {{ form.tag_choices(class="form-control") }}
+            <!-- Hidden fields to store included and excluded tags -->
+            <input type="hidden" id="included_tag_names" name="included_tag_names" value="">
+            <input type="hidden" id="excluded_tag_names" name="excluded_tag_names" value="">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -17,7 +17,7 @@ def dashboard():
 @login_required
 def manga_search():
     form = MangaSearchForm()
-    form.tag_choices.choices = MangaSearchForm.generate_tag_choices()  # Set dynamic choices
+    form.tag_choices.choices = form.generate_tag_choices()  # Set dynamic choices
     
     if form.validate_on_submit():
         mangadex_api = MangaDexAPI()
@@ -45,7 +45,7 @@ def manga_search():
         if content_rating:
             filters["contentRating[]"] = content_rating
         
-        print("status:",status)
+        # print("status:",status)
         # Assuming your API class can handle empty lists for tags correctly
         results = mangadex_api.search_manga(
             limit=limit,

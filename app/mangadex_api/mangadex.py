@@ -120,7 +120,7 @@ class MangaDexAPI:
                 chapters = self.get_manga_feed(manga_id)  # Fetch chapters for this manga
                 manga['chapters'] = chapters  # Append chapters to the manga data
                 enriched_data.append(manga)  # Append the enriched manga data to the list
-                print('enriched_data:', enriched_data)
+                # print('enriched_data:', enriched_data)
             data['data'] = enriched_data
             print(f"response url search_manga:{response.url}")  # Debugging: Print the URL to see how it's constructed
             for manga in data['data']:

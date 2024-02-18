@@ -52,7 +52,7 @@ class MangaSearchForm(FlaskForm):
         return [(tag, tag) for category, tags in ALL_TAGS.items() for tag in tags]
     
     title_query = StringField('Title', validators=[Optional()])
-    tag_choices = SelectMultipleField('Tags', choices=[], validators=[Optional()])
+    tag_choices = SelectMultipleField('Tag Choices', choices=[], validators=[Optional()])
     included_tag_names = StringField('Include Tags', validators=[Optional()])
     excluded_tag_names = StringField('Exclude Tags', validators=[Optional()])
     sort_by = SelectField('Sort by', choices=SORT_CHOICES, validators=[Optional()])

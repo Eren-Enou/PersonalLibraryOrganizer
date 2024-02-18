@@ -1,0 +1,73 @@
+/* Style for the tag container */
+.tag-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Adjust the space between tags */
+    margin-bottom: 20px; /* Space below the tag container */
+}
+
+/* Base style for each tag */
+.tag-box {
+    padding: 8px 12px;
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Style for a tag when hovered */
+.tag-box:hover {
+    background-color: #e9e9e9;
+}
+
+/* Style for a tag when it is selected as 'included' */
+.tag-box.included {
+    background-color: #4CAF50; /* Green */
+    color: white;
+}
+
+/* Style for a tag when it is selected as 'excluded' */
+.tag-box.excluded {
+    background-color: #f44336; /* Red */
+    color: white;
+}
+
+
+.tag-box {
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.tag-box.included {
+    background-color: #4CAF50; /* Green background */
+    color: white;
+}
+
+.tag-box.excluded {
+    background-color: #f44336; /* Red background */
+    color: white;
+}
+
+
+.tag {
+    /* Basic styling for tags */
+    margin: 2px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+}
+
+.tag.included {
+    background-color: lightgreen;
+    border-color: green;
+}
+
+.tag.excluded {
+    background-color: lightcoral;
+    border-color: red;
+}
